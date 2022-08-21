@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,8 +10,11 @@ import java.util.Collection;
 @RequestMapping("/restTemplate")
 public class RestTemplateController {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public RestTemplateController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @GetMapping("/findAll")
     public Collection<User> findAll() {
